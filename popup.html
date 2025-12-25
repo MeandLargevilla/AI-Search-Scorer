@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 320px; padding: 20px; font-family: sans-serif; background: #f8f9fa; }
+    label { font-size: 12px; font-weight: bold; color: #5f6368; display: block; margin-top: 10px;}
+    select, input { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #dadce0; border-radius: 6px; box-sizing: border-box; }
+    button { width: 100%; padding: 10px; background: #0b57d0; color: white; border: none; border-radius: 20px; cursor: pointer; margin-top: 15px; }
+    button:hover { background: #0842a0; }
+    .hint { font-size: 11px; color: #666; margin-bottom: 15px; }
+    a { color: #0b57d0; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h3>🤖 AI 评分设置</h3>
+  
+  <label>选择模型厂商</label>
+  <select id="provider">
+    <option value="gemini">Google Gemini (免费/推荐)</option>
+    <option value="openai">OpenAI / DeepSeek / 兼容接口</option>
+  </select>
+
+  <div id="geminiConfig">
+    <label>Gemini API Key</label>
+    <input type="password" id="geminiKey" placeholder="粘贴 key...">
+    <div class="hint">👉 <a href="https://aistudio.google.com/app/apikey" target="_blank">点此免费获取 Gemini Key</a></div>
+  </div>
+
+  <div id="openaiConfig" style="display:none">
+    <label>API Base URL (接口地址)</label>
+    <input type="text" id="openaiUrl" placeholder="例如 https://api.deepseek.com" value="https://api.openai.com/v1">
+    
+    <label>API Key</label>
+    <input type="password" id="openaiKey" placeholder="sk-...">
+    
+    <label>模型名称</label>
+    <input type="text" id="openaiModel" placeholder="例如 gpt-3.5-turbo 或 deepseek-chat" value="gpt-3.5-turbo">
+  </div>
+
+  <button id="saveBtn">保存配置</button>
+  <div id="status" style="margin-top:10px; text-align:center; font-size:12px;"></div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* 基础样式 */
+.gemini-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-right: 10px; 
+    margin-bottom: 6px;
+    padding: 2px 8px; /* 稍微调小一点内边距，更精致 */
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.5;
+    font-family: 'Google Sans', Roboto, arial, sans-serif;
+    font-weight: 500;
+    user-select: none;
+    transition: opacity 0.3s ease;
+    vertical-align: middle;
+}
+
+/* 动画效果 */
+.gemini-badge.fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 浅色模式配色 (默认) --- */
+.gemini-badge.loading {
+    background-color: #f1f3f4;
+    color: #5f6368;
+    border: 1px solid #dadce0;
+}
+.gemini-badge.error {
+    background-color: #fce8e6;
+    color: #c5221f;
+    border: 1px solid #fad2cf;
+}
+/* 85-100分 */
+.score-high {
+    background-color: #e6f4ea;
+    color: #137333;
+    border: 1px solid #ceead6;
+}
+/* 60-84分 */
+.score-mid {
+    background-color: #fef7e0;
+    color: #b06000;
+    border: 1px solid #fce8b2;
+}
+/* 30-59分 */
+.score-low {
+    background-color: #f1f3f4;
+    color: #5f6368;
+    border: 1px solid #dadce0;
+}
+/* 0-29分 */
+.score-bad {
+    background-color: #fce8e6;
+    color: #c5221f;
+    border: 1px solid #fad2cf;
+}
+
+/* --- 深色模式配色 (Dark Mode) --- */
+/* 当用户的系统或浏览器开启深色模式时生效 */
+@media (prefers-color-scheme: dark) {
+    .gemini-badge {
+        border: 1px solid rgba(255,255,255,0.1); /* 统一边框 */
+    }
+    
+    .gemini-badge.loading {
+        background-color: #303134;
+        color: #9aa0a6;
+        border-color: #3c4043;
+    }
+    
+    .gemini-badge.error {
+        background-color: #410e0b;
+        color: #f28b82;
+        border-color: #5c1815;
+    }
+
+    /* 深色模式下的分数颜色 (降低饱和度，不刺眼) */
+    .score-high {
+        background-color: #0d3b1e; /* 深绿底 */
+        color: #81c995;          /* 亮绿字 */
+        border-color: #0f5128;
+    }
+    
+    .score-mid {
+        background-color: #422b06; /* 深橙底 */
+        color: #fdd663;          /* 亮黄字 */
+        border-color: #593a08;
+    }
+    
+    .score-low {
+        background-color: #303134;
+        color: #bdc1c6;
+        border-color: #3c4043;
+    }
+    
+    .score-bad {
+        background-color: #5c1a16;
+        color: #f28b82;
+        border-color: #5c1815;
+    }
+}

@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "AI Search Scorer - 谷歌搜索评分助手 ",
+  "version": "1.0",
+  "description": "AI Relevance Score for Google Search.谷歌搜索的 AI 相关度评分。",
+  "permissions": [
+    "storage" 
+  ],
+  "host_permissions": [
+    "*://*.google.com/*",
+    "*://*.google.com.hk/*",
+    "*://*.google.cn/*",
+    "*://*.google.co.jp/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.openai.com/*",
+    "https://api.deepseek.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",   
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.google.com/search*",
+        "*://*.google.com.hk/search*",
+        "*://*.google.cn/search*",
+        "*://*.google.co.jp/search*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
