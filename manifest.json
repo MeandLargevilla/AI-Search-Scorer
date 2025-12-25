@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "AI Search Filter - 智能搜索评分与去广助手",
   "version": "2.0.0",
-  "description": "自动识别内容农场、SEO垃圾和广告。AI驱动的双重评分引擎，让搜索回归纯净。",
+  "description": "Filter SEO spam & clickbait with AI. 自动识别内容农场、SEO垃圾和广告。AI驱动的双重评分引擎，让搜索回归纯净。",
   "permissions": ["storage"],
   "host_permissions": [
     "*://*.google.com/*",
