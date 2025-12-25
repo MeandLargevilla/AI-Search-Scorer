@@ -1,108 +1,192 @@
-/* 基础样式 */
+/* =========================================
+   AI Search Scorer - Modern UI Styles
+   ========================================= */
+
+/* 引入 Google Sans 字体 (如果网络允许) */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap");
+
 .gemini-badge {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    margin-right: 10px; 
-    margin-bottom: 6px;
-    padding: 2px 8px; /* 稍微调小一点内边距，更精致 */
-    border-radius: 4px;
-    font-size: 12px;
-    line-height: 1.5;
-    font-family: 'Google Sans', Roboto, arial, sans-serif;
-    font-weight: 500;
-    user-select: none;
-    transition: opacity 0.3s ease;
-    vertical-align: middle;
+  /* 布局与尺寸 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px; /* 胶囊高度 */
+  padding: 0 12px;
+  margin-right: 10px;
+  margin-bottom: 4px;
+  vertical-align: middle;
+
+  /* 形状与外观 */
+  border-radius: 999px; /* Pill shape (完全圆角) */
+  border: 1px solid transparent; /* 预留边框位 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05); /* 悬浮阴影 */
+
+  /* 字体 */
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+
+  /* 交互 */
+  cursor: default;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative; /* 为 Tooltip 定位 */
+  z-index: 10;
 }
 
-/* 动画效果 */
+/* 悬停浮起效果 */
+.gemini-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  z-index: 11;
+}
+
+/* 动画：淡入 */
 .gemini-badge.fade-in {
-    animation: fadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: badgeFadeIn 0.4s ease-out forwards;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(2px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes badgeFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* --- 浅色模式配色 (默认) --- */
+/* --- 状态颜色方案 --- */
+
+/* 加载中：呼吸灯效果 */
 .gemini-badge.loading {
-    background-color: #f1f3f4;
-    color: #5f6368;
-    border: 1px solid #dadce0;
+  background-color: #f1f3f4;
+  color: #5f6368;
+  animation: pulse 1.5s infinite ease-in-out;
 }
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* 错误状态 */
 .gemini-badge.error {
-    background-color: #fce8e6;
-    color: #c5221f;
-    border: 1px solid #fad2cf;
+  background-color: #fce8e6;
+  color: #c5221f;
 }
-/* 85-100分 */
+
+/* 高分 (85+)：鲜艳绿 */
 .score-high {
-    background-color: #e6f4ea;
-    color: #137333;
-    border: 1px solid #ceead6;
+  background-color: #e6f4ea;
+  color: #137333;
 }
-/* 60-84分 */
+
+/* 中分 (60-84)：橙黄 */
 .score-mid {
-    background-color: #fef7e0;
-    color: #b06000;
-    border: 1px solid #fce8b2;
+  background-color: #fef7e0;
+  color: #b06000;
 }
-/* 30-59分 */
+
+/* 低分 (<60)：灰/红 */
 .score-low {
-    background-color: #f1f3f4;
-    color: #5f6368;
-    border: 1px solid #dadce0;
+  background-color: #f1f3f4;
+  color: #5f6368;
 }
-/* 0-29分 */
+
 .score-bad {
-    background-color: #fce8e6;
-    color: #c5221f;
-    border: 1px solid #fad2cf;
+  background-color: #fce8e6;
+  color: #c5221f;
 }
 
-/* --- 深色模式配色 (Dark Mode) --- */
-/* 当用户的系统或浏览器开启深色模式时生效 */
-@media (prefers-color-scheme: dark) {
-    .gemini-badge {
-        border: 1px solid rgba(255,255,255,0.1); /* 统一边框 */
-    }
-    
-    .gemini-badge.loading {
-        background-color: #303134;
-        color: #9aa0a6;
-        border-color: #3c4043;
-    }
-    
-    .gemini-badge.error {
-        background-color: #410e0b;
-        color: #f28b82;
-        border-color: #5c1815;
-    }
+/* --- 自定义 CSS Tooltip --- */
 
-    /* 深色模式下的分数颜色 (降低饱和度，不刺眼) */
-    .score-high {
-        background-color: #0d3b1e; /* 深绿底 */
-        color: #81c995;          /* 亮绿字 */
-        border-color: #0f5128;
-    }
-    
-    .score-mid {
-        background-color: #422b06; /* 深橙底 */
-        color: #fdd663;          /* 亮黄字 */
-        border-color: #593a08;
-    }
-    
-    .score-low {
-        background-color: #303134;
-        color: #bdc1c6;
-        border-color: #3c4043;
-    }
-    
-    .score-bad {
-        background-color: #5c1a16;
-        color: #f28b82;
-        border-color: #5c1815;
-    }
+/* 仅当有 data-reason 属性且不为空时显示 */
+.gemini-badge[data-reason]:not([data-reason=""])::before,
+.gemini-badge[data-reason]:not([data-reason=""])::after {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px); /* 初始位置略低 */
+}
+
+/* Tooltip 文本框 */
+.gemini-badge[data-reason]:not([data-reason=""])::after {
+  content: attr(data-reason);
+  bottom: 100%;
+  margin-bottom: 8px; /* 距离 Badge 的间距 */
+
+  background-color: #202124; /* 深黑背景 */
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+/* Tooltip 小箭头 */
+.gemini-badge[data-reason]:not([data-reason=""])::before {
+  content: "";
+  bottom: 100%;
+  margin-bottom: 2px; /* 紧贴文本框 */
+
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: #202124 transparent transparent transparent;
+  z-index: 100;
+}
+
+/* 悬停显示 */
+.gemini-badge:hover::before,
+.gemini-badge:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- 深色模式适配 (Dark Mode) --- */
+@media (prefers-color-scheme: dark) {
+  .gemini-badge {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .gemini-badge.loading {
+    background-color: #303134;
+    color: #9aa0a6;
+  }
+
+  .score-high {
+    background-color: #0f5132; /* 深绿底 */
+    color: #e6f4ea; /* 浅绿字 */
+  }
+
+  .score-mid {
+    background-color: #593a08; /* 深橙底 */
+    color: #fef7e0; /* 浅黄字 */
+  }
+
+  .score-low {
+    background-color: #3c4043;
+    color: #e8eaed;
+  }
+
+  .score-bad {
+    background-color: #5c1a16;
+    color: #f28b82;
+  }
 }
