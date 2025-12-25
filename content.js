@@ -64,9 +64,8 @@ function renderBadge(el, score, reason) {
   el.style.border = "";
 
   // 设置 data-reason 属性用于 CSS Tooltip 显示
-  if (reason) {
-    el.setAttribute("data-reason", reason);
-    el.removeAttribute("title"); // 移除原生 title 防止双重提示
+  if (reason && reason.trim()) {
+    el.dataset.reason = reason;
   }
 
   el.innerHTML = `<span style="margin-right:4px">${styleData.icon}</span><b>${score}</b>`;

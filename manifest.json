@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "AI Search Scorer - 谷歌搜索评分助手 ",
+  "name": "AI Search Filter - 智能搜索评分与去广助手",
   "version": "2.0.0",
-  "description": "AI Search Filter - 自动过滤内容农场与SEO垃圾，智能评分助手 | Auto-filter content farms & SEO spam with AI-powered scoring.",
+  "description": "自动识别内容农场、SEO垃圾和广告。AI驱动的双重评分引擎，让搜索回归纯净。",
   "permissions": ["storage"],
   "host_permissions": [
     "*://*.google.com/*",
